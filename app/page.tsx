@@ -12,34 +12,18 @@ export default function Home() {
       id: 1,
       title: "Festival de Música de Verano",
       date: "15 de junio, 2025",
-      location: "Parque Central, Nueva York",
+      location: "Nueva cordoba, Chacabuco 365 - Cordoba",
       image: "/logo.jpg?height=400&width=600",
       price: "49,99€",
     },
     {
       id: 2,
-      title: "Conferencia de Tecnología 2025",
+      title: "Sitio 369",
       date: "10 de julio, 2025",
-      location: "Centro de Convenciones, San Francisco",
+      location: "Petalos de sol - Cordoba",
       image: "/images.png?height=400&width=600",
-      price: "99,99€",
-    },
-    {
-      id: 3,
-      title: "Festival de Comida y Vino",
-      date: "5 de agosto, 2025",
-      location: "Plaza del Puerto, Chicago",
-      image: "/logo.jpg?height=400&width=600",
-      price: "35,00€",
-    },
-    {
-      id: 4,
-      title: "Festival Internacional de Cine",
-      date: "20 de septiembre, 2025",
-      location: "Teatro del Centro, Los Ángeles",
-      image: "/logo.jpg?height=400&width=600",
-      price: "25,00€",
-    },
+      price: "30.000$",
+    }    
   ]
 
   return (
