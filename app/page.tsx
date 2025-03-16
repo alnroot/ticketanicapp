@@ -21,7 +21,7 @@ export default function Home() {
       title: "Conferencia de Tecnología 2025",
       date: "10 de julio, 2025",
       location: "Centro de Convenciones, San Francisco",
-      image: "/logo.jpg?height=400&width=600",
+      image: "/images.png?height=400&width=600",
       price: "99,99€",
     },
     {
