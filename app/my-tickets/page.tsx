@@ -28,10 +28,10 @@ export default function MyTicketsPage() {
       eventTitle: "Festival de Música de Verano",
       date: "15 de junio, 2025",
       location: "Parque Central, Nueva York",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/logo.jpg?height=400&width=600",
       ticketType: "Entrada General",
       price: "49,99€",
-      qrCode: "/placeholder.svg?height=300&width=300",
+      qrCode: "/logo.jpg?height=300&width=300",
     },
     {
       id: 2,
@@ -39,10 +39,10 @@ export default function MyTicketsPage() {
       eventTitle: "Conferencia de Tecnología 2025",
       date: "10 de julio, 2025",
       location: "Centro de Convenciones, San Francisco",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/logo.jpg?height=400&width=600",
       ticketType: "Acceso VIP",
       price: "149,99€",
-      qrCode: "/placeholder.svg?height=300&width=300",
+      qrCode: "/logo.jpg?height=300&width=300",
     },
   ]
 
@@ -53,10 +53,10 @@ export default function MyTicketsPage() {
       eventTitle: "Serie de Conciertos de Invierno",
       date: "15 de diciembre, 2024",
       location: "Madison Square Garden, Nueva York",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/logo.jpg?height=400&width=600",
       ticketType: "Entrada General",
       price: "39,99€",
-      qrCode: "/placeholder.svg?height=300&width=300",
+      qrCode: "/logo.jpg?height=300&width=300",
     },
   ]
 
@@ -89,7 +89,7 @@ export default function MyTicketsPage() {
                 <Card key={ticket.id} className="overflow-hidden">
                   <div className="relative h-48 w-full">
                     <Image
-                      src={ticket.image || "/placeholder.svg"}
+                      src={ticket.image || "/logo.jpg"}
                       alt={ticket.eventTitle}
                       fill
                       className="object-cover"
@@ -125,7 +125,7 @@ export default function MyTicketsPage() {
                         <div className="flex flex-col items-center justify-center py-4">
                           <div className="relative h-64 w-64 mb-4">
                             <Image
-                              src={ticket.qrCode || "/placeholder.svg"}
+                              src={ticket.qrCode || "/logo.jpg"}
                               alt="Código QR de Entrada"
                               fill
                               className="object-contain"
@@ -160,7 +160,7 @@ export default function MyTicketsPage() {
                 <Card key={ticket.id} className="overflow-hidden opacity-75">
                   <div className="relative h-48 w-full">
                     <Image
-                      src={ticket.image || "/placeholder.svg"}
+                      src={ticket.image || "/logo.jpg"}
                       alt={ticket.eventTitle}
                       fill
                       className="object-cover grayscale"

@@ -19,7 +19,7 @@ export default function EventCard({ event }: EventCardProps) {
   return (
     <Card className="overflow-hidden transition-all hover:shadow-md">
       <div className="relative h-48 w-full">
-        <Image src={event.image || "/placeholder.svg"} alt={event.title} fill className="object-cover" priority />
+        <Image src={event.image || "/logo.jpg"} alt={event.title} fill className="object-cover" priority />
       </div>
       <CardContent className="p-4">
         <h3 className="font-semibold text-lg line-clamp-1">{event.title}</h3>

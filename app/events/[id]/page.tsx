@@ -15,7 +15,7 @@ export default function EventPage({ params }: { params: { id: string } }) {
     date: "15 de junio, 2025",
     time: "14:00 - 22:00",
     location: "Parque Central, Nueva York",
-    image: "/placeholder.svg?height=600&width=1200",
+    image: "/logo.jpg?height=600&width=1200",
     price: "49,99€",
     description:
       "Únete al festival de música más grande del verano con artistas de primer nivel de todo el mundo. Disfruta de un día de música increíble, comida y diversión en el corazón del Parque Central.",
@@ -47,7 +47,7 @@ export default function EventPage({ params }: { params: { id: string } }) {
       </div>
 
       <div className="relative aspect-video w-full overflow-hidden rounded-lg">
-        <Image src={event.image || "/placeholder.svg"} alt={event.title} fill className="object-cover" priority />
+        <Image src={event.image || "/logo.jpg"} alt={event.title} fill className="object-cover" priority />
       </div>
 
       <div className="grid gap-6 md:grid-cols-3">

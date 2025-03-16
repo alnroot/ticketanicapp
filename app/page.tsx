@@ -13,7 +13,7 @@ export default function Home() {
       title: "Festival de Música de Verano",
       date: "15 de junio, 2025",
       location: "Parque Central, Nueva York",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/logo.jpg?height=400&width=600",
       price: "49,99€",
     },
     {
@@ -21,7 +21,7 @@ export default function Home() {
       title: "Conferencia de Tecnología 2025",
       date: "10 de julio, 2025",
       location: "Centro de Convenciones, San Francisco",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/logo.jpg?height=400&width=600",
       price: "99,99€",
     },
     {
@@ -29,7 +29,7 @@ export default function Home() {
       title: "Festival de Comida y Vino",
       date: "5 de agosto, 2025",
       location: "Plaza del Puerto, Chicago",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/logo.jpg?height=400&width=600",
       price: "35,00€",
     },
     {
@@ -37,7 +37,7 @@ export default function Home() {
       title: "Festival Internacional de Cine",
       date: "20 de septiembre, 2025",
       location: "Teatro del Centro, Los Ángeles",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/logo.jpg?height=400&width=600",
       price: "25,00€",
     },
   ]
