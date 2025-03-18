@@ -7,7 +7,7 @@
             "request": "launch",
             "command": "npm run dev",
             "serverReadyAction": {
-                "pattern": "- Local:.+(https?://.+)",
+                "pattern": "Local:.+(https?://.+)",
                 "uriFormat": "%s",
                 "action": "debugWithChrome"
             },
@@ -16,11 +16,12 @@
             }
         },
         {
-            "name": "Launch Chrome",
-            "request": "launch",
+            "name": "Attach to Chrome",
             "type": "chrome",
-            "url": "http://localhost:3001",
-            "webRoot": "./${workspaceFolder}"
+            "request": "attach",
+            "port": 9222,
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }

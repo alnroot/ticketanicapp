@@ -50,11 +50,7 @@ export default function AdminNav() {
           <Ticket className="mr-2 h-5 w-5" />
           <span>Ticketanica Admin</span>
         </Link>
-        {DEV_MODE && (
-          <span className="ml-2 bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded">
-            Modo Desarrollo
-          </span>
-        )}
+
         <nav className="ml-auto flex items-center space-x-1 md:space-x-2">
           {navItems.map((item) => (
             <Button

@@ -17,7 +17,7 @@ export function useAdminAuth() {
       router.push("/auth/login?callbackUrl=/admin")
       return
     }
-
+    console.log(session, "y estatus: ", status)
     // Verificar si el usuario tiene rol de administrador
     if (session?.user?.role === "admin") {
       setIsAdmin(true)
