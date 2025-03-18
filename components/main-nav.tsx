@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Home, Menu, Ticket, User, LogOut } from "lucide-react"
+import { Home, Menu, Ticket, User, LogOut, Settings } from "lucide-react"
 import { useState } from "react"
 import { useSession, signOut } from "next-auth/react"
 
@@ -79,6 +79,10 @@ export default function MainNav() {
                     <Link href="/profile">Perfil</Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link href="/admin">Panel de Administrador</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleSignOut}>
                     <LogOut className="mr-2 h-4 w-4" />
                     Cerrar sesión
@@ -130,6 +134,11 @@ export default function MainNav() {
                   <Link href="/my-tickets" className="flex items-center py-2" onClick={() => setIsOpen(false)}>
                     <Ticket className="mr-2 h-5 w-5" />
                     Mis Entradas
+                  </Link>
+
+                  <Link href="/admin" className="flex items-center py-2" onClick={() => setIsOpen(false)}>
+                    <Settings className="mr-2 h-5 w-5" />
+                    Panel de Administrador
                   </Link>
 
                   {isAuthenticated ? (
