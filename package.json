@@ -60,7 +60,8 @@
     "zod": "^3.24.1",
     "@auth/core": "latest",
     "nodemailer": "latest",
-    "next-auth": "latest"
+    "next-auth": "latest",
+    "html5-qrcode": "latest"
   },
   "devDependencies": {
     "@types/node": "^22",

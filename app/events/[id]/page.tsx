@@ -8,20 +8,67 @@ import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
 
 export default function EventPage({ params }: { params: { id: string } }) {
-  // Datos de ejemplo para un evento
-  const event = {
-    id: Number.parseInt(params.id),
-    title: "Festival de Música de Verano",
-    date: "15 de junio, 2025",
-    time: "14:00 - 22:00",
-    location: "Parque Central, Nueva York",
-    image: "/logo.jpg?height=600&width=1200",
-    price: "49,99€",
-    description:
-      "Únete al festival de música más grande del verano con artistas de primer nivel de todo el mundo. Disfruta de un día de música increíble, comida y diversión en el corazón del Parque Central.",
-    organizer: "Eventos NYC",
-    capacity: "5.000 asistentes",
-  }
+  // Datos de ejemplo para eventos
+  const events = [
+    {
+      id: 1,
+      title: "Festival de Música de Verano",
+      date: "15 de junio, 2025",
+      time: "14:00 - 22:00",
+      location: "Parque Central, Nueva York",
+      image: "/logo.jpg?height=600&width=1200",
+      price: "49,99€",
+      description:
+        "Únete al festival de música más grande del verano con artistas de primer nivel de todo el mundo. Disfruta de un día de música increíble, comida y diversión en el corazón del Parque Central.",
+      organizer: "Eventos NYC",
+      capacity: "5.000 asistentes",
+    },
+    {
+      id: 2,
+      title: "Conferencia de Tecnología 2025",
+      date: "10 de julio, 2025",
+      time: "09:00 - 18:00",
+      location: "Centro de Convenciones, San Francisco",
+      image: "/images.png?height=600&width=1200",
+      price: "99,99€",
+      description:
+        "La conferencia tecnológica más importante del año. Descubre las últimas tendencias, asiste a talleres prácticos y conecta con líderes de la industria tecnológica.",
+      organizer: "TechConf Inc.",
+      capacity: "2.000 asistentes",
+    },
+    {
+      id: 3,
+      title: "Festival de Comida y Vino",
+      date: "5 de agosto, 2025",
+      time: "12:00 - 20:00",
+      location: "Plaza del Puerto, Chicago",
+      image: "/placeholder.svg?height=600&width=1200",
+      price: "35,00€",
+      description:
+        "Disfruta de una experiencia gastronómica única con los mejores chefs y bodegas. Degustaciones, talleres culinarios y música en vivo en un entorno incomparable.",
+      organizer: "Gourmet Events",
+      capacity: "3.000 asistentes",
+    },
+    {
+      id: 4,
+      title: "Festival Internacional de Cine",
+      date: "20 de septiembre, 2025",
+      time: "10:00 - 23:00",
+      location: "Teatro del Centro, Los Ángeles",
+      image: "/placeholder.svg?height=600&width=1200",
+      price: "25,00€",
+      description:
+        "El festival de cine más prestigioso con estrenos mundiales, charlas con directores y actores, y proyecciones especiales de películas clásicas y contemporáneas.",
+      organizer: "Film Society",
+      capacity: "1.500 asistentes",
+    },
+  ]
+
+  // Obtener el ID del evento de los parámetros de la URL
+  const eventId = Number.parseInt(params.id)
+
+  // Buscar el evento correspondiente en el array de eventos
+  const event = events.find((e) => e.id === eventId) || events[0]
 
   return (
     <main className="container px-4 py-6 mx-auto space-y-6 md:py-8">
@@ -47,7 +94,7 @@ export default function EventPage({ params }: { params: { id: string } }) {
       </div>
 
       <div className="relative aspect-video w-full overflow-hidden rounded-lg">
-        <Image src={event.image || "/logo.jpg"} alt={event.title} fill className="object-cover" priority />
+        <Image src={event.image || "/placeholder.svg"} alt={event.title} fill className="object-cover" priority />
       </div>
 
       <div className="grid gap-6 md:grid-cols-3">

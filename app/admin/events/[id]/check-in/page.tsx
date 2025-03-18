@@ -1,9 +1,9 @@
 "use client"
 
 import { useSession } from "next-auth/react"
-import { redirect } from "next/navigation"
+import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
 import Link from "next/link"
-import { useState } from "react"
 import { ArrowLeft, CheckCircle, Search, X, Download } from "lucide-react"
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -16,14 +16,23 @@ import QRScanner from "@/components/qr-scanner"
 
 export default function EventCheckInPage({ params }: { params: { id: string } }) {
   const { data: session, status } = useSession()
+  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState("")
   const [scanResult, setScanResult] = useState<null | { success: boolean; message: string; attendee?: any }>(null)
   const [checkedInAttendees, setCheckedInAttendees] = useState<any[]>([])
 
-  // Redireccionar si no está autenticado
-  if (status === "unauthenticated") {
-    redirect("/auth/login")
-  }
+  useEffect(() => {
+    // Dar tiempo a que la sesión se cargue completamente
+    if (status === "loading") return
+
+    // Solo redirigir después de confirmar que no hay sesión
+    if (status === "unauthenticated") {
+      router.push("/auth/login")
+    } else {
+      setIsLoading(false)
+    }
+  }, [status, router])
 
   // Datos de ejemplo para el evento
   const event = {
@@ -158,7 +167,7 @@ export default function EventCheckInPage({ params }: { params: { id: string } })
     setScanResult(null)
   }
 
-  if (status === "loading") {
+  if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>

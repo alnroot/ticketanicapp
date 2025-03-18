@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Home, Menu, Ticket, User, LogOut, Settings } from "lucide-react"
+import { Home, Menu, Ticket, User, LogOut, Shield } from "lucide-react"
 import { useState } from "react"
 import { useSession, signOut } from "next-auth/react"
 
@@ -21,6 +21,7 @@ export default function MainNav() {
   const [isOpen, setIsOpen] = useState(false)
   const { data: session, status } = useSession()
   const isAuthenticated = status === "authenticated"
+  const isAdmin = session?.user?.role === "admin"
 
   const handleSignOut = async () => {
     await signOut({ callbackUrl: "/" })
@@ -64,10 +65,22 @@ export default function MainNav() {
                       <AvatarImage src={session.user?.image || ""} alt={session.user?.name || ""} />
                       <AvatarFallback>{session.user?.name ? getInitials(session.user.name) : "U"}</AvatarFallback>
                     </Avatar>
+                    {isAdmin && (
+                      <span className="absolute -top-1 -right-1 bg-primary rounded-full w-4 h-4 flex items-center justify-center">
+                        <Shield className="h-3 w-3 text-primary-foreground" />
+                      </span>
+                    )}
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>{session.user?.name}</DropdownMenuLabel>
+                  <DropdownMenuLabel className="flex items-center">
+                    {session.user?.name}
+                    {isAdmin && (
+                      <span className="ml-2 bg-primary text-primary-foreground text-xs px-1.5 py-0.5 rounded">
+                        Admin
+                      </span>
+                    )}
+                  </DropdownMenuLabel>
                   <DropdownMenuLabel className="text-xs font-normal text-muted-foreground">
                     {session.user?.email}
                   </DropdownMenuLabel>
@@ -78,10 +91,14 @@ export default function MainNav() {
                   <DropdownMenuItem asChild>
                     <Link href="/profile">Perfil</Link>
                   </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem asChild>
-                    <Link href="/admin">Panel de Administrador</Link>
-                  </DropdownMenuItem>
+                  {isAdmin && (
+                    <>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem asChild>
+                        <Link href="/admin">Panel de Administrador</Link>
+                      </DropdownMenuItem>
+                    </>
+                  )}
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleSignOut}>
                     <LogOut className="mr-2 h-4 w-4" />
@@ -118,7 +135,14 @@ export default function MainNav() {
                         <AvatarFallback>{session.user?.name ? getInitials(session.user.name) : "U"}</AvatarFallback>
                       </Avatar>
                       <div className="flex flex-col">
-                        <span className="font-medium">{session.user?.name}</span>
+                        <div className="flex items-center">
+                          <span className="font-medium">{session.user?.name}</span>
+                          {isAdmin && (
+                            <span className="ml-2 bg-primary text-primary-foreground text-xs px-1.5 py-0.5 rounded">
+                              Admin
+                            </span>
+                          )}
+                        </div>
                         <span className="text-xs text-muted-foreground">{session.user?.email}</span>
                       </div>
                     </div>
@@ -136,10 +160,12 @@ export default function MainNav() {
                     Mis Entradas
                   </Link>
 
-                  <Link href="/admin" className="flex items-center py-2" onClick={() => setIsOpen(false)}>
-                    <Settings className="mr-2 h-5 w-5" />
-                    Panel de Administrador
-                  </Link>
+                  {isAdmin && (
+                    <Link href="/admin" className="flex items-center py-2" onClick={() => setIsOpen(false)}>
+                      <Shield className="mr-2 h-5 w-5" />
+                      Panel de Administrador
+                    </Link>
+                  )}
 
                   {isAuthenticated ? (
                     <button

@@ -2,6 +2,12 @@ import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import type { NextAuthOptions } from "next-auth"
 
+// Lista de correos electrónicos de administradores
+const ADMIN_EMAILS = [
+  "alanrotta99@gmail.com",
+  "leonzio.lv@gmail.com",
+]
+
 // Definir las opciones de autenticación correctamente
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -17,11 +23,17 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async session({ session, token }) {
+      // Añadir el rol a la sesión basado en el email
+      if (session.user && session.user.email) {
+        session.user.role = ADMIN_EMAILS.includes(session.user.email) ? "admin" : "user"
+      }
       return session
     },
     async jwt({ token, user, account }) {
+      // Añadir el rol al token JWT
       if (user) {
         token.user = user
+        token.role = ADMIN_EMAILS.includes(user.email as string) ? "admin" : "user"
       }
       return token
     },
@@ -34,4 +46,3 @@ export const authOptions: NextAuthOptions = {
 // Crear y exportar el handler correctamente
 const handler = NextAuth(authOptions)
 export { handler as GET, handler as POST }
-

@@ -1,21 +1,15 @@
 "use client"
 
-import { useSession } from "next-auth/react"
-import { redirect } from "next/navigation"
 import Link from "next/link"
 import { CalendarDays, CheckCircle, Clock, Users } from "lucide-react"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import AdminNav from "@/components/admin-nav"
+import { useAdminAuth } from "@/hooks/use-admin-auth"
 
 export default function AdminDashboard() {
-  const { data: session, status } = useSession()
-
-  // Redireccionar si no está autenticado
-  if (status === "unauthenticated") {
-    redirect("/auth/login")
-  }
+  const { isAdmin, isLoading } = useAdminAuth()
 
   // Datos de ejemplo para eventos
   const events = [
@@ -24,7 +18,7 @@ export default function AdminDashboard() {
       title: "Festival de Música de Verano",
       date: "15 de junio, 2025",
       time: "14:00 - 22:00",
-      location: "Parque Central, Nueva York",
+      location: "Balcarce 355",
       totalTickets: 5000,
       soldTickets: 3245,
       checkedIn: 0,
@@ -34,30 +28,23 @@ export default function AdminDashboard() {
       title: "Conferencia de Tecnología 2025",
       date: "10 de julio, 2025",
       time: "09:00 - 18:00",
-      location: "Centro de Convenciones, San Francisco",
+      location: "Petalos de sol - Còrdoba",
       totalTickets: 2000,
       soldTickets: 1876,
       checkedIn: 0,
-    },
-    {
-      id: 3,
-      title: "Festival de Comida y Vino",
-      date: "5 de agosto, 2025",
-      time: "12:00 - 20:00",
-      location: "Plaza del Puerto, Chicago",
-      totalTickets: 3000,
-      soldTickets: 2100,
-      checkedIn: 0,
-    },
+    }
   ]
 
-  if (status === "loading") {
+  if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
       </div>
     )
   }
+
+  // Si no es admin, el hook redirigirá automáticamente
+  if (!isAdmin) return null
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -72,6 +59,7 @@ export default function AdminDashboard() {
           </div>
         </div>
 
+        {/* Resto del código sin cambios */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
